@@ -15,13 +15,14 @@ class QuizBrain:
         self.current_question = self.question_list[self.question_number]
         self.question_number += 1
         decrypted_text = html.unescape(self.current_question.text)
-        user_answer = input(f"Q.{self.question_number}: {decrypted_text} (True/False)?: ")
-        self.check_answer(user_answer, self.current_question.answer)
+        return f"Q.{self.question_number}: {decrypted_text}"
+        # user_answer = input(f"Q.{self.question_number}: {decrypted_text} (True/False)?: ")
+        # self.check_answer(user_answer, self.current_question.answer)
 
-    def check_answer(self, user_answer, correct_answer):
-        if user_answer.lower().strip() == correct_answer.lower().strip():
-            print("Right!")
+    def check_answer(self, user_answer):
+        if user_answer == self.current_question.answer:
             self.score += 1
+            return True
         else:
-            print("Wrong!")
+            return False
 
